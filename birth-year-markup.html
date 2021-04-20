@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birth Year</title>
+</head>
+<body>
+    <center>
+        <form style="margin-top: 100px;">
+            <label for="number">Age</label>
+            <input style="height: 30px; width: 400px; padding-left: 10px; margin-left: 70px;" type="number" name="number" id="number" placeholder="Type Your Age...">
+            <input style="height: 35px; margin-bottom: 15px;" type="button" value="Find Year" id="button"></br>
+            <label for="date">Date Of Birth</label>
+            <input style="height: 30px; width: 400px; padding-left: 10px; margin-left: 8px" type="date" name="date" id="date" placeholder="Type Your Date of Birth">
+            <input style="height: 35px; width: 76px;" type="button" value="Get Age" id="dateofbirth">
+            
+            <center>
+                <p id="year">Year</p>
+            </center>
+        </form>
+    </center>
+    <script type="text/javascript">
+        function calculate(){
+            var number = document.getElementById("number").value;
+            if(number == "" || number <= 0){
+                window.alert("Please type your correct age!");
+                return;
+            }
+
+            var date = new Date().getFullYear();
+            var birthyear = date - number;
+
+            document.getElementById("year").style.display = "block";
+            document.getElementById("year").innerHTML = "Your birth year is "+birthyear;
+        }
+
+        document.getElementById("year").style.display = "none";
+        document.getElementById("button").onclick = function(){
+            calculate();
+        }
+
+        document.getElementById("dateofbirth").onclick = function(){
+            var DOB = date.value;
+            var age = 0;
+            if(DOB === ""){
+                window.alert("Please type your correct date of birth");
+                return;
+            }
+            var DOBYear = parseInt(DOB.split("-")[0]);
+            var DOBDay = parseInt(DOB.split("-")[2]);
+            var DOBMonth = parseInt(DOB.split("-")[1]);
+            var year = new Date().getFullYear();
+            var month = new Date().getMonth() + 1;
+            var day = new Date().getDate();
+            
+            age = year - DOBYear - 1;
+            
+            if(month > DOBMonth || (day >= DOBDay && month >= DOBMonth)){
+                age++;
+            }
+
+            document.getElementById("year").style.display = "block";
+            document.getElementById("year").innerHTML = "Your age is "+age;
+        }
+
+
+    </script>
+</body>
+</html>
